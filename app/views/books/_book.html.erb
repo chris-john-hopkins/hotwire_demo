@@ -1,11 +1,13 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Title:</strong>
-    <%= book.title %>
-  </p>
+<%= turbo_frame_tag book do %>
+  <div id="<%= dom_id book %>">
+    <p>
+      <strong>Title:</strong>
+      <%= link_to book.title, book, 'data-turbo-frame': '_top' %>
+    </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= book.status %>
-  </p>
-</div>
+    <p>
+      <strong>Status:</strong>
+      <%= book.status %>
+    </p>
+  </div>
+<% end %>

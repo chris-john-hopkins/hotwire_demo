@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @room %>
+
+<%= turbo_stream_from "room-#{@room.id}" %>
+
+<%= turbo_frame_tag "messages" do %>
+  <%= render @messages %>
+<% end %>
+
+<%= form_for Message.new, method: :post, url: room_messages_path(@room.id), remote: true do |f| %>
+  <%= f.rich_text_area :content %>
+  <%= f.submit %>
+<% end %>
+
+<div>
+  <%= link_to "Edit this room", edit_room_path(@room) %> |
+  <%= link_to "Back to rooms", rooms_path %>
+
+  <%= button_to "Destroy this room", @room, method: :delete %>
+</div>

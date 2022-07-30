@@ -1,3 +1,3 @@
 class Book < ApplicationRecord
-  broadcasts_to -> (book) {'books'}, target: :books
+  broadcasts_to ->(_book) { 'books' }, target: :books
 end

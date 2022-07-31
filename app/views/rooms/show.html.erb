@@ -8,10 +8,12 @@
   <%= render @messages %>
 <% end %>
 
-<%= form_for Message.new, method: :post, url: room_messages_path(@room.id), remote: true do |f| %>
-  <%= f.rich_text_area :content %>
-  <%= f.submit %>
-<% end %>
+<div data-controller="styling">
+  <%= form_for Message.new, method: :post, data: { controller: :styling, action: "turbo:submit-end->styling#clear" }, url: room_messages_path(@room.id), remote: true do |f| %>
+    <%= f.rich_text_area :content, 'data-styling-target': 'message' %>
+    <button type="submit">Submit</button>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Edit this room", edit_room_path(@room) %> |
